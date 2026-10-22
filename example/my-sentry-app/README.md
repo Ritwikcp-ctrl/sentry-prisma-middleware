@@ -36,3 +36,5 @@ npx prisma db init
 ```
 npx tsx src/prisma/test-sentry.ts
 ```
+
+### for sentry dsn , got sentry site do signup and get your url.
