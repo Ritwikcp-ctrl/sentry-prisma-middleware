@@ -1,0 +1,137 @@
+
+> sentry-prisma-middleware@1.0.0 build
+> tsc
+
+node_modules/@ark/util/out/objectKinds.d.ts(37,63): error TS2694: Namespace '"/home/ritwikrai/node_modules/buffer/index"' has no exported member 'File'.
+node_modules/@ark/util/out/objectKinds.d.ts(40,18): error TS2304: Cannot find name 'Blob'.
+node_modules/@ark/util/out/objectKinds.d.ts(41,18): error TS2304: Cannot find name 'File'.
+node_modules/@ark/util/out/objectKinds.d.ts(42,22): error TS2304: Cannot find name 'FormData'.
+node_modules/@ark/util/out/objectKinds.d.ts(43,21): error TS2304: Cannot find name 'Headers'.
+node_modules/@ark/util/out/objectKinds.d.ts(44,21): error TS2304: Cannot find name 'Request'.
+node_modules/@ark/util/out/objectKinds.d.ts(45,22): error TS2304: Cannot find name 'Response'.
+node_modules/@ark/util/out/objectKinds.d.ts(46,17): error TS2304: Cannot find name 'URL'.
+node_modules/@ark/util/out/objectKinds.d.ts(60,20): error TS2552: Cannot find name 'BigInt64ArrayConstructor'. Did you mean 'Int16ArrayConstructor'?
+node_modules/@ark/util/out/objectKinds.d.ts(61,21): error TS2552: Cannot find name 'BigUint64ArrayConstructor'. Did you mean 'Uint16ArrayConstructor'?
+node_modules/@ark/util/out/objectKinds.d.ts(77,18): error TS2304: Cannot find name 'Blob'.
+node_modules/@ark/util/out/objectKinds.d.ts(78,18): error TS2304: Cannot find name 'File'.
+node_modules/@ark/util/out/objectKinds.d.ts(79,22): error TS2304: Cannot find name 'FormData'.
+node_modules/@ark/util/out/objectKinds.d.ts(80,21): error TS2304: Cannot find name 'Headers'.
+node_modules/@ark/util/out/objectKinds.d.ts(81,21): error TS2304: Cannot find name 'Request'.
+node_modules/@ark/util/out/objectKinds.d.ts(82,22): error TS2304: Cannot find name 'Response'.
+node_modules/@ark/util/out/objectKinds.d.ts(83,17): error TS2304: Cannot find name 'URL'.
+node_modules/@ark/util/out/objectKinds.d.ts(93,20): error TS2552: Cannot find name 'BigInt64ArrayConstructor'. Did you mean 'Int16ArrayConstructor'?
+node_modules/@ark/util/out/objectKinds.d.ts(94,21): error TS2552: Cannot find name 'BigUint64ArrayConstructor'. Did you mean 'Uint16ArrayConstructor'?
+node_modules/@ark/util/out/registry.d.ts(5,46): error TS2694: Namespace '"/home/ritwikrai/node_modules/buffer/index"' has no exported member 'File'.
+node_modules/@opentelemetry/api/build/src/diag/consoleLogger.d.ts(3,93): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@prisma/orm-family-sql/dist/driver-types-DRsYeq3j-X_D6hNMZ.d.mts(84,69): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-family-sql/dist/prepared-statement-Bs9TKj5u-CInk8vXF.d.mts(422,48): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/codec-types-CQNZE70G-DrntJY0s.d.mts(286,21): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(241,51): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(246,26): error TS2583: Cannot find name 'AsyncGenerator'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(247,11): error TS2339: Property 'asyncIterator' does not exist on type 'SymbolConstructor'.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(247,29): error TS2583: Cannot find name 'AsyncIterator'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2015' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(343,21): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(379,18): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(426,21): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(550,21): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(584,64): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(603,47): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(603,68): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(610,260): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(610,281): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@prisma/orm-framework/dist/runtime-CdqTpkAC.d.mts(638,46): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@sentry/core/build/types/fetch.d.ts(38,86): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/fetch.d.ts(38,92): error TS2304: Cannot find name 'Request'.
+node_modules/@sentry/core/build/types/integrations/http/get-request-url.d.ts(5,82): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/integrations/supabase.d.ts(54,10): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/utils/debounce.d.ts(11,29): error TS2304: Cannot find name 'setTimeout'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(6,36): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(7,37): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(8,38): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(13,36): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(14,37): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(15,37): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(16,38): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(17,38): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(18,39): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(19,38): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(31,49): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(32,50): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/debug-logger.d.ts(33,51): error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+node_modules/@sentry/core/build/types/utils/is.d.ts(147,65): error TS2304: Cannot find name 'Request'.
+node_modules/@sentry/core/build/types/utils/responseStreaming.d.ts(16,56): error TS2304: Cannot find name 'Response'.
+node_modules/@sentry/core/build/types/utils/timer.d.ts(10,60): error TS2304: Cannot find name 'setTimeout'.
+node_modules/@sentry/core/build/types/utils/timer.d.ts(10,92): error TS2304: Cannot find name 'setTimeout'.
+node_modules/@sentry/core/build/types/utils/tunnel.d.ts(3,14): error TS2304: Cannot find name 'Request'.
+node_modules/@sentry/core/build/types/utils/tunnel.d.ts(15,91): error TS2304: Cannot find name 'Response'.
+node_modules/@sentry/core/build/types/utils/url.d.ts(13,15): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/utils/url.d.ts(14,13): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/utils/url.d.ts(15,11): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/utils/url.d.ts(17,32): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/utils/url.d.ts(31,80): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/core/build/types/utils/worldwide.d.ts(21,14): error TS2304: Cannot find name 'Console'.
+node_modules/@sentry/node/build/types/integrations/context.d.ts(1,35): error TS2591: Cannot find name 'node:fs'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/integrations/fs/vendored/types.d.ts(1,26): error TS2591: Cannot find name 'fs'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/integrations/http/SentryHttpInstrumentation.d.ts(1,53): error TS2591: Cannot find name 'node:http'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/integrations/http/SentryHttpInstrumentation.d.ts(4,23): error TS2591: Cannot find name 'node:http'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/integrations/http/httpServerIntegration.d.ts(1,37): error TS2591: Cannot find name 'node:http'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/integrations/http/index.d.ts(1,37): error TS2591: Cannot find name 'node:http'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/integrations/local-variables/common.d.ts(1,31): error TS2591: Cannot find name 'node:inspector'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/integrations/node-fetch/types.d.ts(25,14): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/transports/http-module.d.ts(1,95): error TS2591: Cannot find name 'node:http'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/transports/http-module.d.ts(2,60): error TS2591: Cannot find name 'node:https'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/transports/http-module.d.ts(3,92): error TS2304: Cannot find name 'URL'.
+node_modules/@sentry/node/build/types/transports/http-module.d.ts(11,49): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/transports/http-module.d.ts(12,50): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/transports/http.d.ts(7,24): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/node/build/types/transports/http.d.ts(7,48): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/opentelemetry/build/types/asyncLocalStorageContextManager.d.ts(2,40): error TS2591: Cannot find name 'node:async_hooks'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/server-utils/build/types/ai/core/utils.d.ts(52,81): error TS2304: Cannot find name 'ReadableStream'.
+node_modules/@sentry/server-utils/build/types/ai/google-genai/types.d.ts(16,18): error TS2304: Cannot find name 'Blob'.
+node_modules/@sentry/server-utils/build/types/ai/openai/types.d.ts(215,42): error TS2583: Cannot find name 'AsyncIterable'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2018' or later.
+node_modules/@sentry/server-utils/build/types/ai/openai/types.d.ts(216,13): error TS2339: Property 'asyncIterator' does not exist on type 'SymbolConstructor'.
+node_modules/@sentry/server-utils/build/types/ai/openai/types.d.ts(216,31): error TS2583: Cannot find name 'AsyncIterator'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2015' or later.
+node_modules/@sentry/server-utils/build/types/async-context.d.ts(1,35): error TS2591: Cannot find name 'node:async_hooks'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/server-utils/build/types/integrations/graphql/graphql-dc-subscriber.d.ts(1,37): error TS2591: Cannot find name 'node:diagnostics_channel'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/server-utils/build/types/integrations/hono/honoTypes.d.ts(24,10): error TS2304: Cannot find name 'Request'.
+node_modules/@sentry/server-utils/build/types/integrations/hono/honoTypes.d.ts(37,18): error TS2304: Cannot find name 'Request'.
+node_modules/@sentry/server-utils/build/types/integrations/hono/honoTypes.d.ts(41,75): error TS2304: Cannot find name 'Response'.
+node_modules/@sentry/server-utils/build/types/integrations/hono/honoTypes.d.ts(44,34): error TS2304: Cannot find name 'Response'.
+node_modules/@sentry/server-utils/build/types/integrations/hono/honoTypes.d.ts(44,53): error TS2304: Cannot find name 'Response'.
+node_modules/@sentry/server-utils/build/types/integrations/redis/redis-cache.d.ts(2,47): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/server-utils/build/types/tracing-channel.d.ts(1,64): error TS2591: Cannot find name 'node:diagnostics_channel'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/@sentry/server-utils/build/types/utils/diagnosticsChannel.d.ts(1,41): error TS2591: Cannot find name 'node:diagnostics_channel'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+node_modules/arktype/out/keywords/FormData.d.ts(3,38): error TS2304: Cannot find name 'File'.
+node_modules/arktype/out/keywords/FormData.d.ts(10,15): error TS2304: Cannot find name 'FormData'.
+node_modules/arktype/out/keywords/FormData.d.ts(12,21): error TS2304: Cannot find name 'FormData'.
+node_modules/arktype/out/keywords/TypedArray.d.ts(16,19): error TS2583: Cannot find name 'BigInt64Array'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+node_modules/arktype/out/keywords/TypedArray.d.ts(17,20): error TS2583: Cannot find name 'BigUint64Array'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+node_modules/arktype/out/keywords/string.d.ts(219,35): error TS2304: Cannot find name 'URL'.
+node_modules/tinybench/dist/index.d.ts(6,35): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(8,184): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(9,190): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(66,53): error TS2304: Cannot find name 'Event'.
+node_modules/tinybench/dist/index.d.ts(103,51): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(123,29): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(127,169): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(147,175): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(167,12): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/tinybench/dist/index.d.ts(249,12): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/tinybench/dist/index.d.ts(434,12): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/tinybench/dist/index.d.ts(490,54): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(776,36): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(778,169): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(802,175): error TS2304: Cannot find name 'EventTarget'.
+node_modules/tinybench/dist/index.d.ts(819,21): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/vite/dist/node/chunks/moduleRunnerTransport.d.ts(91,27): error TS2304: Cannot find name 'WebSocket'.
+node_modules/vite/types/customEvent.d.ts(38,14): error TS2304: Cannot find name 'WebSocket'.
+node_modules/vitest/dist/chunks/config.d.QBNYCgFU.d.ts(3225,19): error TS2304: Cannot find name 'AbortSignal'.
+node_modules/vitest/dist/chunks/task-utils.d.PFh2BV6Q.d.ts(33,12): error TS2304: Cannot find name 'AbortSignal'.
+../../../node_modules/buffer/index.d.ts(23,38): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+../../../node_modules/buffer/index.d.ts(24,38): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+../../../node_modules/buffer/index.d.ts(30,37): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+../../../node_modules/buffer/index.d.ts(31,37): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+../../../node_modules/buffer/index.d.ts(45,54): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+../../../node_modules/buffer/index.d.ts(46,54): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+../../../node_modules/buffer/index.d.ts(52,53): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.
+../../../node_modules/buffer/index.d.ts(53,53): error TS2583: Cannot find name 'BigInt'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2020' or later.

@@ -1,11 +1,16 @@
-# Dependency directories
+# Dependencies
 node_modules/
 
+# Build output
 dist/
 
-# dotenv environment variable files
+# Environment variables (CRITICAL: DO NOT UPLOAD)
 .env
+.env.*
+!.env.example
 
-package-lock.json
-*.tgz
-dev.db
+# Prisma composer cache
+.prisma-composer/
+
+# OS files
+.DS_Store

@@ -1,16 +1,19 @@
+
 {
   "compilerOptions": {
-    "target": "es2016",
-    "lib": ["ES2016"],
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "declaration": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "src/**/*.test.ts"]
 }

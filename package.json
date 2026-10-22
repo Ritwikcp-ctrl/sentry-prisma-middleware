@@ -1,20 +1,29 @@
 {
-  "name": "prisma-client-extension-starter",
-  "version": "0.0.0",
+  "name": "sentry-prisma-middleware",
+  "version": "1.0.0",
   "author": "",
-  "description": "",
-  "keywords": ["prisma", "@prisma/client", "extension"],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "Sentry middleware for Prisma ORM 8. Maps Prisma activity trees to Sentry span trees with filtering and custom attributes.",
+  "keywords": ["prisma", "sentry", "middleware", "observability", "tracing"],
+  "type": "module",
+  "main": "dist/sentry-middleware.js",
+  "types": "dist/sentry-middleware.d.ts",
+  "files": ["dist", "README.md"],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
-    "@prisma/client": "latest"
+    "@prisma/orm-postgres": ">=8.0.0-rc.19",
+    "@sentry/node": ">=11.8.0"
   },
   "devDependencies": {
-    "@prisma/client": "latest",
+    "@prisma/orm-postgres": "latest",
+    "@sentry/node": "latest",
+    "@types/node": "^26.6.5",
     "prisma": "latest",
-    "typescript": "4.9.4"
-  }
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  },
+  "license": "ISC"
 }
