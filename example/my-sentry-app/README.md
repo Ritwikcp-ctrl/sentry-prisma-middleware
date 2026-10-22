@@ -1,36 +1,38 @@
-# my-sentry-app
+# Sentry Middleware Test App
+This is a runnable Prisma 8 application used to test and verify the `sentry-prisma-middleware` package locally.
 
-A minimal minimal app with Prisma 8 and Prisma Composer.
+It demonstrates the middleware capturing the Prisma 8 activity tree and mapping it to Sentry spans (`transaction` → `orm-call` → `statement`).
 
-## Run locally
+## Prerequisites
 
-```bash
-npm run dev:composer
+- **Node.js**: `v22.18.0` or newer (required by Prisma 8)
+- **Database**: A PostgreSQL database (we recommend [Prisma Postgres](https://www.prisma.io/postgres))
+- **Sentry**: A free Sentry account and project DSN
+
+## Setup
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+
+# Configure environment variables:
+Copy the example file and fill in your credentials.
+```command
+cp .env.example .env
 ```
 
-This builds the app and starts it with Composer. PostgreSQL projects get a local Prisma Postgres database and apply the committed migrations automatically.
-
-## Deploy
-
-```bash
-npm run deploy
+# Add your database URL and Sentry DSN to .env:
+```ts
+DATABASE_URL="postgres://..."
+SENTRY_DSN="https://...@o....ingest.sentry.io/..."
 ```
 
-The deploy script builds the framework output, provisions Prisma Postgres when selected, applies migrations, and deploys the app to Prisma Compute.
-
-The starter users are inserted idempotently from `src/prisma/seed.ts` on the first database query through the Composer service binding.
-
-
-## Prisma
-
-- Contract: `src/prisma/contract.prisma`
-- Prisma and Composer config: `prisma.config.ts`
-- Composer app: `module.ts` and `service.ts`
-
-After changing the contract, run:
-
-```bash
-npm run contract:emit
+# Intialize the database:
+```ts
+npx prisma db init
 ```
 
-To use the framework's development server directly, run `npm run dev`. This direct mode requires `DATABASE_URL`.
+# Run this test script:
+```
+npx tsx src/prisma/test-sentry.ts
+```
