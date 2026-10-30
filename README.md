@@ -96,7 +96,7 @@ opPrefix           string                            db.prisma               Pre
                                                                              operations (e.g. `db.prisma.statement`)
 
 ```
-## How it maps to Sentry
+
 
 ## How it maps to Sentry
 
