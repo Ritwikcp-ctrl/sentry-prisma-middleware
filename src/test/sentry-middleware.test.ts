@@ -373,38 +373,73 @@ describe('edge cases', () => {
     expect(fake().spans).toHaveLength(0);
   });
 
-  it('produces independent span trees for concurrent transactions', async () => {
-    const { context } = makeRunnerContext();
-    const mw = sentryMiddleware();
+//   it('produces independent span trees for concurrent transactions', async () => {
+//     const { context } = makeRunnerContext();
+//     const mw = sentryMiddleware();
 
-    const txA = await startTransactionActivity({
-      middleware: [mw], context, parent: undefined, holdFinishedChildren: true,
-    });
-    const txB = await startTransactionActivity({
-      middleware: [mw], context, parent: undefined, holdFinishedChildren: true,
-    });
+//     const txA = await startTransactionActivity({
+//       middleware: [mw], context, parent: undefined, holdFinishedChildren: true,
+//     });
+//     const txB = await startTransactionActivity({
+//       middleware: [mw], context, parent: undefined, holdFinishedChildren: true,
+//     });
 
-    await executeStatement(
+//     await executeStatement(
+//       { middleware: [mw], plan, context, parent: txA },
+//       async () => ({ affectedRows: 0 }),
+//     );
+//     await executeStatement(
+//       { middleware: [mw], plan, context, parent: txB },
+//       async () => ({ affectedRows: 0 }),
+//     );
+
+//     await txA.end({ by: 'commit', outcome: 'succeeded' });
+//     await txB.end({ by: 'commit', outcome: 'succeeded' });
+
+//     const transactions = fake().spans.filter(s => s.op === 'db.prisma.transaction');
+//     const statements   = fake().spans.filter(s => s.op === 'db.prisma.statement');
+//     expect(transactions).toHaveLength(2);
+//     expect(statements).toHaveLength(2);
+
+//     for (const stmt of statements) expect(stmt.parent).toBe('db.prisma.transaction');
+//     for (const tx of transactions) expect(tx.parent).toBeUndefined();
+//     expect(fake().spans.every(s => s.ended)).toBe(true);
+//   });
+    
+it('produces independent span trees for parallel transactions', async () => {
+  const { context } = makeRunnerContext();
+  const mw = sentryMiddleware();
+
+  const txA = await startTransactionActivity({
+    middleware: [mw], context, parent: undefined, holdFinishedChildren: true,
+  });
+  const txB = await startTransactionActivity({
+    middleware: [mw], context, parent: undefined, holdFinishedChildren: true,
+  });
+
+  // TRUE parallel — both statements in flight at the same time.
+  await Promise.all([
+    executeStatement(
       { middleware: [mw], plan, context, parent: txA },
       async () => ({ affectedRows: 0 }),
-    );
-    await executeStatement(
+    ),
+    executeStatement(
       { middleware: [mw], plan, context, parent: txB },
       async () => ({ affectedRows: 0 }),
-    );
+    ),
+  ]);
 
-    await txA.end({ by: 'commit', outcome: 'succeeded' });
-    await txB.end({ by: 'commit', outcome: 'succeeded' });
+  await txA.end({ by: 'commit', outcome: 'succeeded' });
+  await txB.end({ by: 'commit', outcome: 'succeeded' });
 
-    const transactions = fake().spans.filter(s => s.op === 'db.prisma.transaction');
-    const statements   = fake().spans.filter(s => s.op === 'db.prisma.statement');
-    expect(transactions).toHaveLength(2);
-    expect(statements).toHaveLength(2);
-
-    for (const stmt of statements) expect(stmt.parent).toBe('db.prisma.transaction');
-    for (const tx of transactions) expect(tx.parent).toBeUndefined();
-    expect(fake().spans.every(s => s.ended)).toBe(true);
-  });
+  const transactions = fake().spans.filter(s => s.op === 'db.prisma.transaction');
+  const statements   = fake().spans.filter(s => s.op === 'db.prisma.statement');
+  expect(transactions).toHaveLength(2);
+  expect(statements).toHaveLength(2);
+  for (const stmt of statements) expect(stmt.parent).toBe('db.prisma.transaction');
+  for (const tx of transactions) expect(tx.parent).toBeUndefined();
+  expect(fake().spans.every(s => s.ended)).toBe(true);
+});
 
   it('handles orm-call succeeded outcome', async () => {
     const { context } = makeHookContext();
@@ -474,5 +509,95 @@ describe('edge cases', () => {
     expect(rootSpan.parent).toBeUndefined();
     expect(leafSpan.name).toBe('db.prisma.statement');
     expect(leafSpan.parent).toBe('db.prisma.transaction');
+  });
+});
+
+// Row counts + branches
+describe('row counts and outcome branches', () => {
+  it('records returned_rows when result.returns is "rows"', async () => {
+    const { context } = makeHookContext();
+    const mw = sentryMiddleware();
+    const activity = { kind: 'statement', id: 'stmt-rows' } as any;
+
+    await mw.activityStarted!(activity, context);
+    await mw.activityEnded!(
+      activity,
+      { outcome: 'succeeded', returns: 'rows', rowCount: 5 } as any,
+      context,
+    );
+
+    expect(fake().spans[0].attributes['db.response.returned_rows']).toBe(5);
+    expect(fake().spans[0].status?.code).toBe(1);
+  });
+
+  it('records affected_rows when result.returns is "stats"', async () => {
+    const { context } = makeHookContext();
+    const mw = sentryMiddleware();
+    const activity = { kind: 'statement', id: 'stmt-stats' } as any;
+
+    await mw.activityStarted!(activity, context);
+    await mw.activityEnded!(
+      activity,
+      { outcome: 'succeeded', returns: 'stats', stats: { affectedRows: 3 } } as any,
+      context,
+    );
+
+    expect(fake().spans[0].attributes['db.response.affected_rows']).toBe(3);
+  });
+
+  it('marks unexpected activity outcome as ERROR (default branch)', async () => {
+    const { context } = makeHookContext();
+    const mw = sentryMiddleware();
+    const activity = { kind: 'statement', id: 'stmt-weird' } as any;
+
+    await mw.activityStarted!(activity, context);
+    await mw.activityEnded!(activity, { outcome: 'timeout' } as any, context);
+
+    const span = fake().spans[0];
+    expect(span.status?.code).toBe(2);
+    expect(span.status?.message).toContain('timeout');
+    expect(span.ended).toBe(true);
+  });
+
+  it('marks unexpected finalized outcome as ERROR (default branch)', async () => {
+    const { context } = makeHookContext();
+    const mw = sentryMiddleware();
+    const activity = { kind: 'transaction', id: 'tx-weird' } as any;
+
+    await mw.activityStarted!(activity, context);
+    await mw.activityFinalized!(activity, { outcome: 'aborted' } as any, context);
+
+    const span = fake().spans[0];
+    expect(span.status?.code).toBe(2);
+    expect(span.status?.message).toContain('aborted');
+  });
+
+  it('handles orm-call stopped outcome', async () => {
+    const { context } = makeHookContext();
+    const mw = sentryMiddleware();
+    const activity = { kind: 'orm-call', id: 'orm-stopped' } as any;
+
+    await mw.activityStarted!(activity, context);
+    await mw.activityEnded!(activity, { outcome: 'stopped' } as any, context);
+
+    const span = fake().spans[0];
+    expect(span.op).toBe('db.prisma.orm-call');
+    expect(span.status?.code).toBe(1);
+    expect(span.attributes['prisma.outcome']).toBe('stopped');
+  });
+
+  it('passes mysql targets through db.system.name unchanged', async () => {
+    const { context } = makeHookContext();
+    const mw = sentryMiddleware();
+    const activity = { kind: 'statement', id: 'stmt-mysql' } as any;
+
+    await mw.activityStarted!(activity, context);
+    mw.beforeEncode!(
+      { sql: 'SELECT 1', params: [], meta: { target: 'mysql' } } as any,
+      context,
+    );
+    await mw.activityEnded!(activity, { outcome: 'succeeded' } as any, context);
+
+    expect(fake().spans[0].attributes['db.system.name']).toBe('mysql');
   });
 });

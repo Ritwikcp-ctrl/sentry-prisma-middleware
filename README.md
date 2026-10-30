@@ -98,9 +98,11 @@ opPrefix           string                            db.prisma               Pre
 ```
 ## How it maps to Sentry
 
-Prisma 8 executes queries in a tree. The exact shape depends on the operation:
+## How it maps to Sentry
 
-**1. `db.transaction(fn)` with two queries** — the transaction is the root.
+Prisma 8 executes queries in a tree. The shapes below are the **intended** activity tree — the middleware handles whatever tree Prisma emits. Two of the three shapes (marked "not runner-verified") are inferred from Prisma's runtime behavior; only the `orm-call → statement` shape is directly covered by the test suite.
+
+**1. `db.transaction(fn)` with two queries** — the transaction is the root *(not runner-verified — see Testing)*.
 
 ```text
 db.prisma.transaction
@@ -108,26 +110,12 @@ db.prisma.transaction
 │   └── db.prisma.statement
 └── db.prisma.orm-call
     └── db.prisma.statement
-```
 
-**2. A single ORM read** — no surrounding transaction; the ORM call is the root.
 
-```text
-db.prisma.orm-call
-└── db.prisma.statement
-```
+Statement naming. beforeEncode renames the statement span to plan.sql, so the final Sentry waterfall shows the actual SQL text (with placeholders). The activity id is prisma.activity.id; the SQL text is also db.query.text. (Asserted by tests.)
 
-**3. A single-row update** — Prisma wraps the update in an implicit transaction.
+Row counts. When a statement result has returns: 'rows', db.response.returned_rows is set. When it has returns: 'stats', db.response.affected_rows is set.
 
-```text
-db.prisma.orm-call
-└── db.prisma.transaction
-    └── db.prisma.statement
-```
-
-**Statement naming.** `beforeEncode` renames the statement span to `plan.sql`, so the final Sentry waterfall shows the actual SQL text (with placeholders). The activity id is `prisma.activity.id`; the SQL text is also `db.query.text`.
-
-**Row counts.** When a statement returns rows, `db.response.returned_rows` is set. When it returns only stats (e.g. `UPDATE` / `DELETE` without `RETURNING`), `db.response.affected_rows` is set.
 
 ## Capturing errors
 
@@ -189,14 +177,17 @@ expect(recordedSpans).toEqual([
 ]);
 ```
 
-The test suite (20 tests) covers:
+The test suite (26 tests) covers:
 
-- **Span tree** — nesting under transactions, and nesting when `shouldTrace` skips an `orm-call` ancestor
-- **Span naming** — `plan.sql` as the name via `beforeEncode`, `db.query.text`, `db.system.name` `postgres` → `postgresql` mapping and non-postgres passthrough, no `plan.params` leak
-- **Outcomes** — `succeeded` / `stopped` / `failed` for statements, `committed` / `rolled-back` / `unknown` for transactions, `succeeded` / `failed` for `orm-call`
+- **Span tree** — nesting under transactions; nesting when `shouldTrace` skips an `orm-call`; 3-level parent walk
+- **Span naming** — `plan.sql` as the name via `beforeEncode`; `db.query.text`; `db.system.name` `postgres` → `postgresql` mapping and passthrough (`sqlite`, `mysql`); no `plan.params` leak
+- **Outcomes** — `succeeded` / `stopped` / `failed` for statements; `succeeded` / `stopped` / `failed` for `orm-call`; `committed` / `rolled-back` / `unknown` for transactions; unexpected outcome strings route to the ERROR `default` branch
+- **Row counts** — `db.response.returned_rows` and `db.response.affected_rows`
 - **Parent resolution** — `startNewTrace: true` (new trace) and `false` (attach to active span)
 - **Hook safety** — `customAttributes(activity)` receives the activity; a throwing `customAttributes` does not fail the query and produces a structured `ctx.log.warn` event
-- **Edge cases** — SDK throws during span creation (query still succeeds), `activityEnded` with no stored span (shouldTrace skip), concurrent transactions produce independent trees, `nearestSpan` walks 3 levels
+- **Edge cases** — SDK throws during span creation (query still succeeds); `activityEnded` with no stored span; parallel transactions produce independent trees
+
+
 ## License
 
 ISC
