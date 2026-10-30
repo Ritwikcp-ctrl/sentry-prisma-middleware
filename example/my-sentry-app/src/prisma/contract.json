@@ -244,6 +244,9 @@
               },
               "foreignKeys": [
                 {
+                  "index": {
+                    "name": "Post_authorId_idx_e47547ed"
+                  },
                   "source": {
                     "columns": [
                       "authorId"
@@ -339,19 +342,19 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "797cfed44e9c40efbc00a689b87c92c44cd4b60e1ae3d6ffbc0304d8f348aaf5"
+    "storageHash": "a51b4833fdaffe730572670ccc27dd89af7e0726ab3de7f428d21702d687cc15"
   },
   "execution": {
-    "executionHash": "4e88564095b5e0ba7904ffdba3c563ef916d87688c8c483c67055f71a9194f0f",
+    "executionHash": "3730158042e7c88d23f35529e89ad90532db0cd5c528c13e701f93cb45aa8a9c",
     "mutations": {
       "defaults": [
         {
           "onCreate": {
-            "id": "timestampNow",
+            "id": "timestamptzStringNow",
             "kind": "generator"
           },
           "onUpdate": {
-            "id": "timestampNow",
+            "id": "timestamptzStringNow",
             "kind": "generator"
           },
           "ref": {
@@ -362,11 +365,11 @@
         },
         {
           "onCreate": {
-            "id": "timestampNow",
+            "id": "timestamptzStringNow",
             "kind": "generator"
           },
           "onUpdate": {
-            "id": "timestampNow",
+            "id": "timestamptzStringNow",
             "kind": "generator"
           },
           "ref": {

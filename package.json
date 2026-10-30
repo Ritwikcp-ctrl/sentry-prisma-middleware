@@ -1,29 +1,54 @@
 {
-  "name": "sentry-prisma-middleware",
-  "version": "1.0.0",
-  "author": "",
+  "name": "prisma-orm-sentry",
+  "version": "0.1.0",
   "description": "Sentry middleware for Prisma ORM 8. Maps Prisma activity trees to Sentry span trees with filtering and custom attributes.",
-  "keywords": ["prisma", "sentry", "middleware", "observability", "tracing"],
+  "author": "Tejas|Developer",
+  "license": "ISC",
   "type": "module",
-  "main": "dist/sentry-middleware.js",
-  "types": "dist/sentry-middleware.d.ts",
-  "files": ["dist", "README.md"],
+  "main": "./dist/sentry-middleware.js",
+  "types": "./dist/sentry-middleware.d.ts",
+  
+  "files": [
+    "dist",
+    "README.md"
+  ],
+
+  "keywords": [
+    "prisma",
+    "prisma-orm-extension",
+    "prisma-orm",
+    "sentry",
+    "middleware",
+    "observability",
+    "tracing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ritwikcp-ctrl/sentry-prisma-middleware.git"
+  },
+  
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
-    "build": "tsc",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "@prisma/orm-postgres": ">=8.0.0-rc.19",
-    "@sentry/node": ">=11.8.0"
+    "@prisma/orm-family-sql": "^8.0.0-rc.19",
+    "@sentry/node": "^11.8.0"
   },
   "devDependencies": {
-    "@prisma/orm-postgres": "latest",
-    "@sentry/node": "latest",
+    "@prisma/orm-family-sql": "^8.0.0-rc.19",
+    "@prisma/orm-framework": "^8.0.0-rc.19",
+    "@sentry/node": "^11.8.0",
     "@types/node": "^26.6.5",
-    "prisma": "latest",
+    "prisma": "^8.0.0-rc.19",
+    "rimraf": "^6.0.1",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5"
-  },
-  "license": "ISC"
+  }
 }
