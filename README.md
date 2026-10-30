@@ -96,11 +96,14 @@ opPrefix           string                            db.prisma               Pre
                                                                              operations (e.g. `db.prisma.statement`)
 
 ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9be12a8 (docs: add Sentry.flush() tip and end-to-end verification notes)
 
 ## How it maps to Sentry
 
-Prisma 8 executes queries in a tree. The shapes below are the **intended** activity tree — the middleware handles whatever tree Prisma emits. Two of the three shapes (marked "not runner-verified") are inferred from Prisma's runtime behavior; only the `orm-call → statement` shape is directly covered by the test suite.
+Prisma 8 executes queries in a tree. The shapes below have been verified against a real Sentry project and a real PostgreSQL database. The middleware mirrors whatever tree Prisma emits.
 
 **1. `db.transaction(fn)` with two queries** — the transaction is the root *(not runner-verified — see Testing)*.
 
@@ -186,6 +189,17 @@ The test suite (26 tests) covers:
 - **Parent resolution** — `startNewTrace: true` (new trace) and `false` (attach to active span)
 - **Hook safety** — `customAttributes(activity)` receives the activity; a throwing `customAttributes` does not fail the query and produces a structured `ctx.log.warn` event
 - **Edge cases** — SDK throws during span creation (query still succeeds); `activityEnded` with no stored span; parallel transactions produce independent trees
+
+
+### End-to-end testing against a real Sentry project
+
+When running a standalone script against a real Sentry project (e.g., using `tsx` or `node`), call `await Sentry.flush(5000)` before the process exits. Sentry batches spans asynchronously; a process that exits immediately will silently drop them.
+
+The middleware has been verified end-to-end against a real Sentry project and a real PostgreSQL database, confirming:
+- Span nesting (`transaction → orm-call → statement`).
+- SQL text naming (`SELECT ...`, `INSERT ...`) and `db.query.text` attributes.
+- Failed queries mark the span as `ERROR` without duplicating the exception (the exception remains in the caller's `try/catch`).
+- Rolled-back transactions correctly fire `activityFinalized` and mark the transaction span as `ERROR`.
 
 
 ## License

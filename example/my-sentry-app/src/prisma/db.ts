@@ -8,18 +8,19 @@ import contractJson from './contract.json' with { type: 'json' };
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
-  tracesSampleRate: 1.0,
+  tracesSampleRate: 1.0,   
 });
 
 const contract = contractFromJson<Contract>(contractJson);
 
 export const db = postgres({
-  contract,                               
+  contract,
   url: process.env.DATABASE_URL!,
   middleware: [
     sentryMiddleware({
-      useActiveParentForRoot: false,
-      shouldTrace: () => true,
+      
+      startNewTrace: true,
+      shouldTrace: () => true,  
     }),
   ],
 });
